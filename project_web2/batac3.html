@@ -1,0 +1,2884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City of Batac | Home of the Greats</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --batac-blue: #002D86;
+            --batac-red: #A00D1E;
+            --batac-yellow: #E5B800;
+            --batac-green: #1E5631;
+            --bg-light: #F4F7F9;
+            --text-dark: #1A1A1A;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
+        
+        ::selection {
+            background: var(--batac-yellow);
+            color: var(--text-dark);
+        }
+
+        /* Focused Wrapper for sub-pages */
+        .container-focused { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        header {
+            background: var(--batac-blue);
+            padding: 10px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--batac-yellow);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .logo-wrap { display: flex; align-items: center; gap: 15px; color: white; cursor: pointer; }
+        .logo-seal { width: 60px; height: 60px; background: white; border-radius: 50%; padding: 2px; object-fit: contain; }
+
+        nav ul { display: flex; list-style: none; gap: 20px; }
+        nav a { color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition); cursor: pointer; }
+        nav a:hover, nav a.active { color: var(--batac-yellow); }
+
+        .page-section { display: none; padding-top: 80px; min-height: 100vh; }
+        .page-section.active { display: block; animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* --- HOME PAGE (ENHANCED) --- */
+        .hero {
+            min-height: 85vh;
+            background: linear-gradient(135deg, #001a4d 0%, #002D86 50%, #003399 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 8% 80px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 80% 20%, rgba(229, 184, 0, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 30%);
+            pointer-events: none;
+        }
+
+        .hero-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1400px;
+            gap: 80px;
+        }
+
+        .hero-content {
+            flex: 1;
+            z-index: 2;
+        }
+
+        .hero-content p {
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .hero-content h1 { 
+            font-family: 'Montserrat'; 
+            font-size: 4rem; 
+            color: var(--batac-yellow); 
+            animation: slideInLeft 0.8s ease-out 0.2s both;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero-content h2 { 
+            font-family: 'Montserrat'; 
+            font-size: 3.5rem; 
+            margin-bottom: 10px; 
+            animation: slideInLeft 0.8s ease-out 0.4s both;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-image {
+            flex: 0 0 420px;
+            height: 420px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+            animation: slideInRight 1s ease-out 0.3s both;
+            position: relative;
+            z-index: 2;
+            transition: var(--transition);
+            border: 3px solid rgba(229, 184, 0, 0.3);
+        }
+
+        .hero-image:hover {
+            transform: scale(1.03) rotate(1deg);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            border-color: var(--batac-yellow);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .btn-hero {
+            background: var(--batac-red);
+            color: white;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 25px;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            animation: slideInLeft 0.8s ease-out 0.6s both;
+        }
+
+        .btn-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-hero:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(160,13,30,0.4);
+        }
+
+        .btn-hero:hover::before {
+            left: 100%;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .scroll-indicator i {
+            font-size: 2rem;
+            color: var(--batac-yellow);
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .scroll-indicator:hover i {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-15px); }
+            60% { transform: translateX(-50%) translateY(-8px); }
+        }
+
+        @keyframes fadeSlideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(229, 184, 0, 0.4); }
+            50% { box-shadow: 0 0 0 15px rgba(229, 184, 0, 0); }
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 40px 8%;
+            position: relative;
+            z-index: 10;
+            background: var(--bg-light);
+        }
+
+        .s-card {
+            padding: 40px 20px; 
+            border-radius: 12px; 
+            text-align: center; 
+            color: white; 
+            cursor: pointer; 
+            transition: var(--transition);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15); 
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .s-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+            opacity: 0;
+            transition: var(--transition);
+        }
+        .s-card:hover::before { opacity: 1; }
+        .s-card:hover { 
+            transform: translateY(-15px) scale(1.02); 
+            box-shadow: 0 20px 45px rgba(0,0,0,0.25); 
+        }
+        .s-card:active {
+            transform: translateY(-5px) scale(0.98);
+        }
+        .s-card i { 
+            font-size: 2.5rem; 
+            margin-bottom: 15px; 
+            display: block; 
+            transition: var(--transition);
+        }
+        .s-card:hover i {
+            transform: scale(1.2) rotate(5deg);
+        }
+        .s-card h3 { 
+            font-family: 'Montserrat'; 
+            font-size: 0.85rem; 
+            letter-spacing: 1px; 
+            text-transform: uppercase; 
+            position: relative;
+            z-index: 1;
+        }
+
+        .bg-agri { background: var(--batac-green); }
+        .bg-hall { background: var(--batac-blue); }
+        .bg-emergency { background: var(--batac-red); }
+        .bg-tourism { background: var(--batac-yellow); color: var(--text-dark); }
+
+        .content-wrap { padding: 60px 8%; background: var(--bg-light); }
+        .section-title { font-family: 'Montserrat'; margin-bottom: 40px; border-left: 5px solid var(--batac-red); padding-left: 15px; }
+
+        /* Stats Section */
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            padding: 60px 8%;
+            background: linear-gradient(135deg, var(--batac-blue) 0%, #001a4d 100%);
+            margin-top: 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            color: white;
+            padding: 30px 20px;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: var(--transition);
+            cursor: default;
+        }
+
+        .stat-item:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-5px);
+        }
+
+        .stat-item i {
+            font-size: 2.5rem;
+            color: var(--batac-yellow);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .stat-number {
+            font-family: 'Montserrat';
+            font-size: 2.8rem;
+            font-weight: 800;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.8;
+        }
+
+        /* Landmark Grid (Enhanced) */
+        .landmark-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+        .landmark-card { 
+            background: white; 
+            border-radius: 15px; 
+            overflow: hidden; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+        }
+        .landmark-card:hover { 
+            transform: translateY(-12px); 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15); 
+        }
+        .landmark-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--batac-blue), var(--batac-red));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        .landmark-card:hover::after {
+            transform: scaleX(1);
+        }
+        .landmark-img { 
+            height: 200px; 
+            background-size: cover; 
+            background-position: center; 
+            transition: var(--transition);
+            position: relative;
+        }
+        .landmark-card:hover .landmark-img {
+            transform: scale(1.05);
+        }
+        .landmark-img-wrapper {
+            overflow: hidden;
+            height: 200px;
+        }
+        .landmark-img::before {
+            content: '\f06e';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: var(--batac-yellow);
+            color: var(--text-dark);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            opacity: 0;
+            z-index: 2;
+        }
+        .landmark-card:hover .landmark-img::before {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+        .landmark-info { 
+            padding: 20px; 
+        }
+        .landmark-info h4 {
+            transition: color 0.3s ease;
+        }
+        .landmark-card:hover .landmark-info h4 {
+            color: var(--batac-blue);
+        }
+
+        /* Card styles for subpages */
+        .info-card-sub { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+        footer { background: #111; color: #aaa; padding: 60px 8% 20px; border-top: 4px solid var(--batac-red); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
+
+        /* Government Page Styles */
+        .gov-hero {
+            background: linear-gradient(135deg, #001a4d 0%, #002D86 100%);
+            padding: 60px 0;
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+
+        .gov-hero h1 {
+            font-family: 'Montserrat';
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            animation: fadeSlideUp 0.6s ease both;
+        }
+
+        .gov-hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeSlideUp 0.6s ease 0.2s both;
+        }
+
+        .gov-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        .gov-section-title {
+            font-family: 'Montserrat';
+            font-size: 1.8rem;
+            color: var(--batac-blue);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .gov-section-title i {
+            color: var(--batac-red);
+        }
+
+        .branches-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .branch-card {
+            background: white;
+            border-radius: 15px;
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .branch-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--batac-blue);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .branch-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .branch-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+
+        .branch-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--batac-blue) 0%, #003399 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            transition: var(--transition);
+        }
+
+        .branch-card:hover .branch-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, var(--batac-red) 0%, #c41020 100%);
+        }
+
+        .branch-icon i {
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .branch-card h3 {
+            font-family: 'Montserrat';
+            color: var(--batac-blue);
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+
+        .branch-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .dept-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .dept-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            cursor: pointer;
+            border-left: 4px solid transparent;
+        }
+
+        .dept-card:hover {
+            transform: translateX(8px);
+            border-left-color: var(--batac-yellow);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .dept-icon {
+            width: 55px;
+            height: 55px;
+            background: var(--bg-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .dept-card:hover .dept-icon {
+            background: var(--batac-blue);
+        }
+
+        .dept-icon i {
+            font-size: 1.4rem;
+            color: var(--batac-blue);
+            transition: var(--transition);
+        }
+
+        .dept-card:hover .dept-icon i {
+            color: white;
+        }
+
+        .dept-info h4 {
+            font-family: 'Montserrat';
+            color: var(--text-dark);
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .dept-info p {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .docs-section {
+            background: linear-gradient(135deg, var(--batac-blue) 0%, #001a4d 100%);
+            border-radius: 20px;
+            padding: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .docs-content h2 {
+            font-family: 'Montserrat';
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .docs-content p {
+            opacity: 0.9;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .docs-btn {
+            background: var(--batac-yellow);
+            color: var(--text-dark);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .docs-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(229, 184, 0, 0.4);
+        }
+
+        .docs-icon {
+            font-size: 4rem;
+            opacity: 0.3;
+        }
+
+        .back-btn {
+            background: transparent;
+            color: var(--batac-blue);
+            padding: 12px 25px;
+            border: 2px solid var(--batac-blue);
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-btn:hover {
+            background: var(--batac-blue);
+            color: white;
+        }
+
+        /* Officials Section */
+        .officials-section {
+            margin-bottom: 50px;
+        }
+
+        .executive-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .official-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .official-card.featured {
+            background: linear-gradient(135deg, #001a4d 0%, #002D86 100%);
+            color: white;
+        }
+
+        .official-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .official-avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--batac-yellow) 0%, #d4a800 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            font-family: 'Montserrat';
+            font-weight: 800;
+            overflow: hidden;
+            border: 4px solid rgba(255,255,255,0.3);
+        }
+
+        .official-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .official-card.featured .official-avatar {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border-color: rgba(229, 184, 0, 0.5);
+        }
+
+        .official-card h3 {
+            font-family: 'Montserrat';
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .official-card .position {
+            color: var(--batac-yellow);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .official-card:not(.featured) .position {
+            color: var(--batac-red);
+        }
+
+        .official-card .contact-info {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .council-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .council-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            border-top: 4px solid var(--batac-blue);
+        }
+
+        .council-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-top-color: var(--batac-yellow);
+        }
+
+        .council-avatar {
+            width: 70px;
+            height: 70px;
+            background: var(--bg-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 1.1rem;
+            color: var(--batac-blue);
+            transition: var(--transition);
+            font-family: 'Montserrat';
+            font-weight: 700;
+            overflow: hidden;
+            border: 3px solid transparent;
+        }
+
+        .council-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .council-card:hover .council-avatar {
+            background: var(--batac-blue);
+            color: white;
+            border-color: var(--batac-yellow);
+        }
+
+        .council-card h4 {
+            font-family: 'Montserrat';
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .council-card .committee {
+            font-size: 0.8rem;
+            color: #777;
+            line-height: 1.5;
+        }
+
+        .special-members {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .special-card {
+            background: linear-gradient(135deg, var(--batac-green) 0%, #145224 100%);
+            border-radius: 12px;
+            padding: 20px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: var(--transition);
+        }
+
+        .special-card:hover {
+            transform: translateX(5px);
+        }
+
+        .special-card i {
+            font-size: 2rem;
+            opacity: 0.8;
+        }
+
+        .special-card h4 {
+            font-size: 1rem;
+            margin-bottom: 3px;
+        }
+
+        .special-card p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .tab-container {
+            margin-bottom: 30px;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 25px;
+            border: 2px solid var(--batac-blue);
+            background: transparent;
+            color: var(--batac-blue);
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: var(--batac-blue);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Services Page Styles */
+        .services-hero {
+            background: linear-gradient(135deg, var(--batac-green) 0%, #145224 100%);
+            padding: 60px 0;
+            text-align: center;
+            color: white;
+            margin-bottom: 0;
+        }
+
+        .services-hero h1 {
+            font-family: 'Montserrat';
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            animation: fadeSlideUp 0.6s ease both;
+        }
+
+        .services-hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeSlideUp 0.6s ease 0.2s both;
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px 60px;
+        }
+
+        .services-category {
+            margin-bottom: 50px;
+        }
+
+        .services-category-title {
+            font-family: 'Montserrat';
+            font-size: 1.5rem;
+            color: var(--batac-blue);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--bg-light);
+        }
+
+        .services-category-title i {
+            color: var(--batac-green);
+        }
+
+        .service-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border-left: 4px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            border-left-color: var(--batac-green);
+        }
+
+        .service-card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--batac-green) 0%, #2d7a47 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .service-card:hover .service-card-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .service-card-icon i {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .service-card h3 {
+            font-family: 'Montserrat';
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .service-card .service-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .service-tag {
+            background: var(--bg-light);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: #666;
+        }
+
+        .service-tag.online {
+            background: #e8f5e9;
+            color: var(--batac-green);
+        }
+
+        .service-tag.walk-in {
+            background: #e3f2fd;
+            color: var(--batac-blue);
+        }
+
+        .quick-links-section {
+            background: linear-gradient(135deg, var(--batac-blue) 0%, #001a4d 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 50px;
+            color: white;
+        }
+
+        .quick-links-section h2 {
+            font-family: 'Montserrat';
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .quick-links-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .quick-link-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .quick-link-btn:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+        }
+
+        .quick-link-btn i {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            display: block;
+            color: var(--batac-yellow);
+        }
+
+        .quick-link-btn span {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .hotlines-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            margin-bottom: 50px;
+        }
+
+        .hotlines-section h2 {
+            font-family: 'Montserrat';
+            font-size: 1.5rem;
+            color: var(--batac-blue);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .hotlines-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .hotline-card {
+            background: var(--bg-light);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .hotline-card:hover {
+            background: var(--batac-red);
+            color: white;
+        }
+
+        .hotline-card:hover i,
+        .hotline-card:hover h4,
+        .hotline-card:hover p {
+            color: white;
+        }
+
+        .hotline-card i {
+            font-size: 2rem;
+            color: var(--batac-red);
+            margin-bottom: 15px;
+            transition: var(--transition);
+        }
+
+        .hotline-card h4 {
+            font-family: 'Montserrat';
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            transition: var(--transition);
+        }
+
+        .hotline-card p {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        .requirements-section {
+            background: #fffbeb;
+            border-radius: 15px;
+            padding: 30px;
+            border-left: 5px solid var(--batac-yellow);
+            margin-bottom: 50px;
+        }
+
+        .requirements-section h3 {
+            font-family: 'Montserrat';
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .requirements-section h3 i {
+            color: var(--batac-yellow);
+        }
+
+        .requirements-section ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .requirements-section li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #555;
+        }
+
+        .requirements-section li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--batac-green);
+        }
+
+        /* Tourism Page Styles */
+        .tourism-hero {
+            height: 60vh;
+            background: linear-gradient(135deg, rgba(0,45,134,0.8) 0%, rgba(30,86,49,0.8) 100%),
+                        url('Batac/city_of_batac.jpg') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .tourism-hero-content h1 {
+            font-family: 'Montserrat';
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeSlideUp 0.6s ease both;
+        }
+
+        .tourism-hero-content p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.95;
+            animation: fadeSlideUp 0.6s ease 0.2s both;
+        }
+
+        .tourism-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .tourism-section-title {
+            font-family: 'Montserrat';
+            font-size: 2rem;
+            color: var(--batac-blue);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .tourism-section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.05rem;
+        }
+
+        .attractions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .attraction-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: var(--transition);
+        }
+
+        .attraction-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .attraction-card.featured {
+            grid-column: span 2;
+        }
+
+        .attraction-card.featured .attraction-image {
+            height: 350px;
+        }
+
+        .attraction-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .attraction-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.5));
+        }
+
+        .attraction-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--batac-yellow);
+            color: var(--text-dark);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 2;
+        }
+
+        .attraction-content {
+            padding: 25px;
+        }
+
+        .attraction-content h3 {
+            font-family: 'Montserrat';
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .attraction-content p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .attraction-meta {
+            display: flex;
+            gap: 20px;
+            color: #888;
+            font-size: 0.85rem;
+        }
+
+        .attraction-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .attraction-meta i {
+            color: var(--batac-blue);
+        }
+
+        .food-section {
+            background: linear-gradient(135deg, #fff5e6 0%, #fff9f0 100%);
+            border-radius: 30px;
+            padding: 60px;
+            margin-bottom: 60px;
+        }
+
+        .food-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .food-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .food-image img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .food-content h2 {
+            font-family: 'Montserrat';
+            font-size: 2rem;
+            color: var(--batac-red);
+            margin-bottom: 20px;
+        }
+
+        .food-content p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .food-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .food-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #555;
+            border-bottom: 1px dashed #ddd;
+        }
+
+        .food-list li:last-child {
+            border-bottom: none;
+        }
+
+        .food-list li::before {
+            content: '\f2e7';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--batac-yellow);
+        }
+
+        .festival-section {
+            background: linear-gradient(135deg, var(--batac-red) 0%, #7a0a16 100%);
+            border-radius: 30px;
+            padding: 60px;
+            color: white;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .festival-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .festival-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .festival-content h2 {
+            font-family: 'Montserrat';
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        .festival-content p {
+            opacity: 0.95;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .festival-date {
+            background: rgba(255,255,255,0.2);
+            padding: 20px;
+            border-radius: 15px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .festival-date i {
+            color: var(--batac-yellow);
+            margin-right: 10px;
+        }
+
+        .festival-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .festival-image img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .travel-tips {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            margin-bottom: 60px;
+        }
+
+        .travel-tips h2 {
+            font-family: 'Montserrat';
+            font-size: 1.5rem;
+            color: var(--batac-blue);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .tip-card {
+            text-align: center;
+            padding: 25px 15px;
+            background: var(--bg-light);
+            border-radius: 15px;
+            transition: var(--transition);
+        }
+
+        .tip-card:hover {
+            background: var(--batac-blue);
+            color: white;
+        }
+
+        .tip-card:hover i {
+            color: var(--batac-yellow);
+        }
+
+        .tip-card i {
+            font-size: 2rem;
+            color: var(--batac-blue);
+            margin-bottom: 15px;
+            transition: var(--transition);
+        }
+
+        .tip-card h4 {
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+
+        .tip-card p {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .nature-section {
+            margin-bottom: 60px;
+        }
+
+        .nature-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .nature-image {
+            height: 100%;
+            min-height: 300px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .nature-content {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .nature-content h3 {
+            font-family: 'Montserrat';
+            font-size: 1.8rem;
+            color: var(--batac-green);
+            margin-bottom: 15px;
+        }
+
+        .nature-content p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* News & Contact Page Styles */
+        .news-container, .contact-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 20px 60px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-header h1 {
+            font-family: 'Montserrat';
+            font-size: 2.5rem;
+            color: var(--batac-blue);
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            color: #666;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--batac-blue);
+            transition: var(--transition);
+        }
+
+        .news-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .news-date {
+            color: var(--batac-red);
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+
+        .news-card h3 {
+            font-family: 'Montserrat';
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .news-card p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .news-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--batac-blue);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .news-link:hover {
+            color: var(--batac-red);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .contact-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .contact-card h3 {
+            font-family: 'Montserrat';
+            color: var(--batac-blue);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-card h3 i {
+            color: var(--batac-red);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .contact-item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-item i {
+            color: var(--batac-blue);
+            font-size: 1.2rem;
+            margin-top: 3px;
+        }
+
+        .contact-item p {
+            margin: 0;
+            color: #555;
+        }
+
+        .contact-item strong {
+            color: var(--text-dark);
+        }
+
+        .map-container {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-wrap" onclick="showSection('home')">
+            <img src="Batac/batac-seal.png" class="logo-seal" alt="City of Batac Seal">
+            <div>
+                <h3 style="font-size: 1rem; letter-spacing: 1px;">CITY OF BATAC</h3>
+                <p style="font-size: 0.55rem; opacity: 0.7; letter-spacing: 1px;">OFFICIAL GOVERNMENT PORTAL</p>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a onclick="showSection('home')" id="nav-home" class="active">Home</a></li>
+                <li><a onclick="showSection('gov')" id="nav-gov">Government</a></li>
+                <li><a onclick="showSection('services')" id="nav-services">Services</a></li>
+                <li><a onclick="showSection('tourism')" id="nav-tourism">Tourism</a></li>
+                <li><a onclick="showSection('news')" id="nav-news">News</a></li>
+                <li><a onclick="showSection('contact')" id="nav-contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="home" class="page-section active">
+        <section class="hero">
+            <div class="hero-wrapper">
+                <div class="hero-content">
+                    <p style="letter-spacing: 4px; font-weight: 600;">HOME OF THE GREATS</p>
+                    <h1>WELCOME TO</h1>
+                    <h2>BATAC CITY</h2>
+                    <button class="btn-hero" onclick="showSection('tourism')">
+                        <i class="fa-solid fa-compass" style="margin-right: 8px;"></i>DISCOVER MORE
+                    </button>
+                </div>
+                <div class="hero-image">
+                    <img src="Batac/city_of_batac.jpg" alt="City of Batac">
+                </div>
+            </div>
+            <div class="scroll-indicator" onclick="document.querySelector('.services-grid').scrollIntoView({behavior: 'smooth'})">
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+        </section>
+
+        <section class="services-grid">
+            <div class="s-card bg-agri" onclick="showSection('agri-section')" style="animation: fadeSlideUp 0.6s ease 0.1s both;">
+                <i class="fa-solid fa-seedling"></i>
+                <h3>Agriculture &<br>Economy</h3>
+            </div>
+            <div class="s-card bg-hall" onclick="showSection('services')" style="animation: fadeSlideUp 0.6s ease 0.2s both;">
+                <i class="fa-solid fa-building-columns"></i>
+                <h3>City Hall<br>Services</h3>
+            </div>
+            <div class="s-card bg-emergency" onclick="showSection('emergency-section')" style="animation: fadeSlideUp 0.6s ease 0.3s both;">
+                <i class="fa-solid fa-truck-medical"></i>
+                <h3>Emergency &<br>Health</h3>
+            </div>
+            <div class="s-card bg-tourism" onclick="showSection('tourism')" style="animation: fadeSlideUp 0.6s ease 0.4s both;">
+                <i class="fa-solid fa-map-location-dot"></i>
+                <h3>Tourism &<br>Culture</h3>
+            </div>
+        </section>
+
+        <section class="stats-section">
+            <div class="stat-item">
+                <i class="fa-solid fa-users"></i>
+                <span class="stat-number" data-target="55000">0</span>
+                <span class="stat-label">Population</span>
+            </div>
+            <div class="stat-item">
+                <i class="fa-solid fa-map"></i>
+                <span class="stat-number" data-target="43">0</span>
+                <span class="stat-label">Barangays</span>
+            </div>
+            <div class="stat-item">
+                <i class="fa-solid fa-landmark"></i>
+                <span class="stat-number" data-target="12">0</span>
+                <span class="stat-label">Tourist Spots</span>
+            </div>
+            <div class="stat-item">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span class="stat-number" data-target="1818">0</span>
+                <span class="stat-label">Founded</span>
+            </div>
+        </section>
+
+        <section class="content-wrap">
+            <div class="section-title">
+                <h2>Heritage & Landmarks</h2>
+                <p>Preserving the soul of Ilocos Norte.</p>
+            </div>
+            <div class="landmark-grid">
+                <div class="landmark-card" onclick="showSection('tourism')">
+                    <div class="landmark-img-wrapper">
+                        <div class="landmark-img" style="background-image: url('Batac/House of marcos.jpg');"></div>
+                    </div>
+                    <div class="landmark-info">
+                        <h4>House of Marcos</h4>
+                        <p>A historical sanctuary dedicated to the legacy of Batac's most famous son.</p>
+                    </div>
+                </div>
+                <div class="landmark-card" onclick="showSection('tourism')">
+                    <div class="landmark-img-wrapper">
+                        <div class="landmark-img" style="background-image: url('Batac/Immaculate_Conception_Parish_Church.jpg');"></div>
+                    </div>
+                    <div class="landmark-info">
+                        <h4>Immaculate Conception Parish</h4>
+                        <p>A 16th-century Augustinian church, standing as a testament to Batacqueño faith.</p>
+                    </div>
+                </div>
+                <div class="landmark-card" onclick="showSection('tourism')">
+                    <div class="landmark-img-wrapper">
+                        <div class="landmark-img" style="background-image: url('Batac/kabacan_falls.jpg');"></div>
+                    </div>
+                    <div class="landmark-info">
+                        <h4>Kabacan Falls</h4>
+                        <p>A serene natural escape showcasing the untouched beauty of the Batac highlands.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="gov" class="page-section">
+        <div class="gov-hero">
+            <h1><i class="fa-solid fa-landmark"></i> Government of Batac City</h1>
+            <p>Serving the people with integrity, transparency, and commitment to progress.</p>
+        </div>
+
+        <div class="gov-container">
+            <!-- Tab Navigation -->
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" onclick="showGovTab('officials')"><i class="fa-solid fa-users"></i> Officials</button>
+                    <button class="tab-btn" onclick="showGovTab('council')"><i class="fa-solid fa-gavel"></i> City Council</button>
+                    <button class="tab-btn" onclick="showGovTab('departments')"><i class="fa-solid fa-building"></i> Departments</button>
+                    <button class="tab-btn" onclick="showGovTab('documents')"><i class="fa-solid fa-folder-open"></i> Documents</button>
+                </div>
+            </div>
+
+            <!-- Officials Tab -->
+            <div id="officials-tab" class="tab-content active">
+                <h2 class="gov-section-title"><i class="fa-solid fa-crown"></i> Executive Leadership</h2>
+                <div class="executive-grid">
+                    <div class="official-card featured">
+                        <div class="official-avatar">MC</div>
+                        <h3>Hon. Mark Christian "Markee" R. Chua</h3>
+                        <div class="position">City Mayor</div>
+                        <p class="contact-info">
+                            <i class="fa-solid fa-phone"></i> (077) 671-1725 / 677-2877<br>
+                            <i class="fa-solid fa-envelope"></i> lovebatac@gmail.com
+                        </p>
+                    </div>
+                    <div class="official-card featured">
+                        <div class="official-avatar">WC</div>
+                        <h3>Atty. Windell D. Chua</h3>
+                        <div class="position">City Vice Mayor</div>
+                        <p class="contact-info">
+                            <i class="fa-solid fa-phone"></i> (077) 792-3120<br>
+                            <i class="fa-solid fa-envelope"></i> sp@batac.gov.ph
+                        </p>
+                    </div>
+                </div>
+
+                <div class="branches-grid">
+                    <div class="branch-card">
+                        <div class="branch-icon">
+                            <i class="fa-solid fa-user-tie"></i>
+                        </div>
+                        <h3>Executive Branch</h3>
+                        <p>Led by the City Mayor, responsible for implementing policies, managing city operations, and representing the city in official capacities.</p>
+                    </div>
+                    <div class="branch-card">
+                        <div class="branch-icon">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <h3>Legislative Branch</h3>
+                        <p>The Sangguniang Panlungsod (City Council) enacts ordinances and policies for the city's development and welfare.</p>
+                    </div>
+                    <div class="branch-card">
+                        <div class="branch-icon">
+                            <i class="fa-solid fa-scale-balanced"></i>
+                        </div>
+                        <h3>Judicial Branch</h3>
+                        <p>The Municipal Trial Court handles legal cases and ensures justice and fair resolution of disputes within the city.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- City Council Tab -->
+            <div id="council-tab" class="tab-content">
+                <h2 class="gov-section-title"><i class="fa-solid fa-gavel"></i> Sangguniang Panlungsod (City Council)</h2>
+                <p style="margin-bottom: 30px; color: #666;">The legislative body of Batac City, responsible for enacting ordinances and resolutions for the welfare of the constituents.</p>
+                
+                <div class="council-grid">
+                    <div class="council-card">
+                        <div class="council-avatar" style="background: linear-gradient(135deg, #002D86 0%, #003399 100%); color: white;">BAQ</div>
+                        <h4>Hon. Bismark Angelo A. Quidang</h4>
+                        <p class="committee">Committee on Education, Culture, Science & Technology; Tourism & Public Information</p>
+                    </div>
+                    <div class="council-card">
+                        <div class="council-avatar" style="background: linear-gradient(135deg, #1E5631 0%, #2d7a47 100%); color: white;">KJP</div>
+                        <h4>Hon. Kichel Jomarie G. Pungtilan</h4>
+                        <p class="committee">Committee on Social Welfare Development; Women, Children & Family Relations</p>
+                    </div>
+                    <div class="council-card">
+                        <div class="council-avatar" style="background: linear-gradient(135deg, #A00D1E 0%, #c41020 100%); color: white;">VEN</div>
+                        <h4>Hon. Violeta Eugenia D. Nalupta</h4>
+                        <p class="committee">Committee on Landed Estates & Assessments; Human Rights & CSOs</p>
+                    </div>
+                    <div class="council-card">
+                        <div class="council-avatar" style="background: linear-gradient(135deg, #E5B800 0%, #d4a800 100%); color: #1A1A1A;">LRB</div>
+                        <h4>Hon. Lucky Rene G. Bunye</h4>
+                        <p class="committee">Committee on Games and Amusements; Good Government & Public Ethics</p>
+                    </div>
+                    <div class="council-card">
+                        <div class="council-avatar" style="background: linear-gradient(135deg, #002D86 0%, #003399 100%); color: white;">JGD</div>
+                        <h4>Hon. John Gabrielle D. Daguio</h4>
+                        <p class="committee">Committee on Health and Sanitation; Cooperatives & Livelihood</p>
+                    </div>
+                    <div class="council-card">
+                        <div class="council-avatar" style="background: linear-gradient(135deg, #1E5631 0%, #2d7a47 100%); color: white;">CBL</div>
+                        <h4>Hon. Christopher B. Lagmay</h4>
+                        <p class="committee">Committee on Trade, Commerce & Industry; Transportation and Communication</p>
+                    </div>
+                    <div class="council-card">
+                        <div class="council-avatar" style="background: linear-gradient(135deg, #A00D1E 0%, #c41020 100%); color: white;">JRG</div>
+                        <h4>Hon. Joel R. Garcia</h4>
+                        <p class="committee">Committee on Laws, Rules, Ethics & Privileges; Senior Citizens & NGOs</p>
+                    </div>
+                    <div class="council-card">
+                        <div class="council-avatar" style="background: linear-gradient(135deg, #E5B800 0%, #d4a800 100%); color: #1A1A1A;">JST</div>
+                        <h4>Hon. Jaime S. Tanagon, Sr.</h4>
+                        <p class="committee">Committee on Public Works & Infrastructure; Agriculture & Food</p>
+                    </div>
+                    <div class="council-card">
+                        <div class="council-avatar" style="background: linear-gradient(135deg, #002D86 0%, #003399 100%); color: white;">AIC</div>
+                        <h4>Hon. Avelard Ibarra F. Crisostomo</h4>
+                        <p class="committee">Committee on Peace and Order & Public Safety; Labor & Employment</p>
+                    </div>
+                </div>
+
+                <h3 style="font-family: Montserrat; color: var(--batac-blue); margin: 30px 0 20px;"><i class="fa-solid fa-star" style="color: var(--batac-yellow);"></i> Special Representatives</h3>
+                <div class="special-members">
+                    <div class="special-card">
+                        <div style="width: 60px; height: 60px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.2rem; flex-shrink: 0;">GOM</div>
+                        <div>
+                            <h4>Hon. Gilbert O. Medina</h4>
+                            <p>ABC President - Barangay Affairs & Special Projects</p>
+                        </div>
+                    </div>
+                    <div class="special-card" style="background: linear-gradient(135deg, var(--batac-blue) 0%, #001a4d 100%);">
+                        <div style="width: 60px; height: 60px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.2rem; flex-shrink: 0;">RGM</div>
+                        <div>
+                            <h4>Hon. Reign Gwendia T. Mirasol</h4>
+                            <p>SK Federation President - Youth & Sports Development</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Departments Tab -->
+            <div id="departments-tab" class="tab-content">
+                <h2 class="gov-section-title"><i class="fa-solid fa-building"></i> City Departments & Offices</h2>
+                <div class="dept-grid">
+                    <div class="dept-card">
+                        <div class="dept-icon">
+                            <i class="fa-solid fa-user-shield"></i>
+                        </div>
+                        <div class="dept-info">
+                            <h4>City Mayor's Office</h4>
+                            <p>Executive and administrative affairs</p>
+                        </div>
+                    </div>
+                    <div class="dept-card">
+                        <div class="dept-icon">
+                            <i class="fa-solid fa-gavel"></i>
+                        </div>
+                        <div class="dept-info">
+                            <h4>City Vice Mayor's Office</h4>
+                            <p>Legislative affairs & council support</p>
+                        </div>
+                    </div>
+                    <div class="dept-card">
+                        <div class="dept-icon">
+                            <i class="fa-solid fa-file-contract"></i>
+                        </div>
+                        <div class="dept-info">
+                            <h4>City Administrator's Office</h4>
+                            <p>Administrative coordination</p>
+                        </div>
+                    </div>
+                    <div class="dept-card">
+                        <div class="dept-icon">
+                            <i class="fa-solid fa-gears"></i>
+                        </div>
+                        <div class="dept-info">
+                            <h4>City General Services Office</h4>
+                            <p>Personnel and property management</p>
+                        </div>
+                    </div>
+                    <div class="dept-card">
+                        <div class="dept-icon">
+                            <i class="fa-solid fa-coins"></i>
+                        </div>
+                        <div class="dept-info">
+                            <h4>City Budget Office</h4>
+                            <p>Financial planning and management</p>
+                        </div>
+                    </div>
+                    <div class="dept-card">
+                        <div class="dept-icon">
+                            <i class="fa-solid fa-calculator"></i>
+                        </div>
+                        <div class="dept-info">
+                            <h4>City Accountant's Office</h4>
+                            <p>Accounting and audit functions</p>
+                        </div>
+                    </div>
+                    <div class="dept-card">
+                        <div class="dept-icon">
+                            <i class="fa-solid fa-money-bill-wave"></i>
+                        </div>
+                        <div class="dept-info">
+                            <h4>City Treasurer's Office</h4>
+                            <p>Revenue collection & disbursement</p>
+                        </div>
+                    </div>
+                    <div class="dept-card">
+                        <div class="dept-icon">
+                            <i class="fa-solid fa-landmark"></i>
+                        </div>
+                        <div class="dept-info">
+                            <h4>City Assessor's Office</h4>
+                            <p>Property assessment & taxation</p>
+                        </div>
+                    </div>
+                    <div class="dept-card">
+                        <div class="dept-icon">
+                            <i class="fa-solid fa-hard-hat"></i>
+                        </div>
+                        <div class="dept-info">
+                            <h4>City Engineer's Office</h4>
+                            <p>Infrastructure and public works</p>
+                        </div>
+                    </div>
+                    <div class="dept-card">
+                        <div class="dept-icon">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                        </div>
+                        <div class="dept-info">
+                            <h4>City Health Office</h4>
+                            <p>Public health and medical services</p>
+                        </div>
+                    </div>
+                    <div class="dept-card">
+                        <div class="dept-icon">
+                            <i class="fa-solid fa-city"></i>
+                        </div>
+                        <div class="dept-info">
+                            <h4>City Planning & Development</h4>
+                            <p>Urban planning and zoning</p>
+                        </div>
+                    </div>
+                    <div class="dept-card">
+                        <div class="dept-icon">
+                            <i class="fa-solid fa-book"></i>
+                        </div>
+                        <div class="dept-info">
+                            <h4>City Civil Registrar</h4>
+                            <p>Vital records and documentation</p>
+                        </div>
+                    </div>
+                    <div class="dept-card">
+                        <div class="dept-icon">
+                            <i class="fa-solid fa-scale-balanced"></i>
+                        </div>
+                        <div class="dept-info">
+                            <h4>City Legal Office</h4>
+                            <p>Legal counsel and litigation</p>
+                        </div>
+                    </div>
+                    <div class="dept-card">
+                        <div class="dept-icon">
+                            <i class="fa-solid fa-seedling"></i>
+                        </div>
+                        <div class="dept-info">
+                            <h4>City Agriculture Office</h4>
+                            <p>Agricultural programs & support</p>
+                        </div>
+                    </div>
+                    <div class="dept-card">
+                        <div class="dept-icon">
+                            <i class="fa-solid fa-hands-holding-child"></i>
+                        </div>
+                        <div class="dept-info">
+                            <h4>City Social Welfare Office</h4>
+                            <p>Social services & assistance</p>
+                        </div>
+                    </div>
+                    <div class="dept-card">
+                        <div class="dept-icon">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <div class="dept-info">
+                            <h4>City Environment & Natural Resources</h4>
+                            <p>Environmental protection</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Documents Tab -->
+            <div id="documents-tab" class="tab-content">
+                <h2 class="gov-section-title"><i class="fa-solid fa-folder-open"></i> Public Documents & Records</h2>
+                
+                <div class="docs-section" style="margin-bottom: 30px;">
+                    <div class="docs-content">
+                        <h2><i class="fa-solid fa-file-invoice-dollar"></i> Budget & Financial Reports</h2>
+                        <p>Access annual budget documents, financial statements, and audit reports for full fiscal transparency.</p>
+                        <button class="docs-btn">
+                            <i class="fa-solid fa-download"></i> Download Reports
+                        </button>
+                    </div>
+                    <i class="fa-solid fa-chart-pie docs-icon"></i>
+                </div>
+
+                <div class="dept-grid">
+                    <div class="dept-card" style="cursor: pointer;">
+                        <div class="dept-icon">
+                            <i class="fa-solid fa-file-pdf"></i>
+                        </div>
+                        <div class="dept-info">
+                            <h4>Annual Budget FY 2026</h4>
+                            <p>City appropriations ordinance</p>
+                        </div>
+                    </div>
+                    <div class="dept-card" style="cursor: pointer;">
+                        <div class="dept-icon">
+                            <i class="fa-solid fa-file-pdf"></i>
+                        </div>
+                        <div class="dept-info">
+                            <h4>Statement of Receipts</h4>
+                            <p>Quarterly financial reports</p>
+                        </div>
+                    </div>
+                    <div class="dept-card" style="cursor: pointer;">
+                        <div class="dept-icon">
+                            <i class="fa-solid fa-file-pdf"></i>
+                        </div>
+                        <div class="dept-info">
+                            <h4>Citizen's Charter</h4>
+                            <p>Service standards & procedures</p>
+                        </div>
+                    </div>
+                    <div class="dept-card" style="cursor: pointer;">
+                        <div class="dept-icon">
+                            <i class="fa-solid fa-file-pdf"></i>
+                        </div>
+                        <div class="dept-info">
+                            <h4>City Ordinances</h4>
+                            <p>Local legislation records</p>
+                        </div>
+                    </div>
+                    <div class="dept-card" style="cursor: pointer;">
+                        <div class="dept-icon">
+                            <i class="fa-solid fa-file-pdf"></i>
+                        </div>
+                        <div class="dept-info">
+                            <h4>Bid & Awards</h4>
+                            <p>Procurement documents</p>
+                        </div>
+                    </div>
+                    <div class="dept-card" style="cursor: pointer;">
+                        <div class="dept-icon">
+                            <i class="fa-solid fa-file-pdf"></i>
+                        </div>
+                        <div class="dept-info">
+                            <h4>DILG Compliance</h4>
+                            <p>Seal of Good Local Governance</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="back-btn" onclick="showSection('home')" style="margin-top: 30px;">
+                <i class="fa-solid fa-arrow-left"></i> Back to Home
+            </button>
+        </div>
+    </div>
+
+    <div id="services" class="page-section">
+        <div class="services-hero">
+            <h1><i class="fa-solid fa-hands-helping"></i> City Services</h1>
+            <p>Efficient, transparent, and citizen-centered public services for all Batacqueños.</p>
+        </div>
+
+        <div class="services-container">
+            <!-- Quick Links -->
+            <div class="quick-links-section">
+                <h2><i class="fa-solid fa-bolt"></i> Quick Access Portal</h2>
+                <div class="quick-links-grid">
+                    <div class="quick-link-btn">
+                        <i class="fa-solid fa-file-signature"></i>
+                        <span>Business Permits</span>
+                    </div>
+                    <div class="quick-link-btn">
+                        <i class="fa-solid fa-id-card"></i>
+                        <span>Civil Registry</span>
+                    </div>
+                    <div class="quick-link-btn">
+                        <i class="fa-solid fa-money-bill-transfer"></i>
+                        <span>Pay Taxes Online</span>
+                    </div>
+                    <div class="quick-link-btn">
+                        <i class="fa-solid fa-calendar-check"></i>
+                        <span>Schedule Appointment</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Emergency Hotlines -->
+            <div class="hotlines-section">
+                <h2><i class="fa-solid fa-phone-volume"></i> Emergency Hotlines</h2>
+                <div class="hotlines-grid">
+                    <div class="hotline-card">
+                        <i class="fa-solid fa-truck-medical"></i>
+                        <h4>Emergency / Rescue</h4>
+                        <p>(077) 792-3120</p>
+                    </div>
+                    <div class="hotline-card">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <h4>PNP Batac Station</h4>
+                        <p>(077) 792-3030</p>
+                    </div>
+                    <div class="hotline-card">
+                        <i class="fa-solid fa-fire-extinguisher"></i>
+                        <h4>Bureau of Fire</h4>
+                        <p>(077) 792-3333</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Business & Licensing Services -->
+            <div class="services-category">
+                <h2 class="services-category-title"><i class="fa-solid fa-briefcase"></i> Business & Licensing Services</h2>
+                <div class="service-cards-grid">
+                    <div class="service-card">
+                        <div class="service-card-icon">
+                            <i class="fa-solid fa-store"></i>
+                        </div>
+                        <h3>New Business Permit</h3>
+                        <p>Register your new business and obtain the necessary permits to operate legally in Batac City.</p>
+                        <div class="service-meta">
+                            <span class="service-tag walk-in">Walk-in</span>
+                            <span class="service-tag">3-5 Days</span>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-card-icon">
+                            <i class="fa-solid fa-rotate"></i>
+                        </div>
+                        <h3>Business Permit Renewal</h3>
+                        <p>Renew your existing business permit annually. Available online through BOSS portal.</p>
+                        <div class="service-meta">
+                            <span class="service-tag online">Online Available</span>
+                            <span class="service-tag">1-2 Days</span>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-card-icon">
+                            <i class="fa-solid fa-building-circle-check"></i>
+                        </div>
+                        <h3>Building Permit</h3>
+                        <p>Apply for construction, renovation, or demolition permits for residential and commercial structures.</p>
+                        <div class="service-meta">
+                            <span class="service-tag walk-in">Walk-in</span>
+                            <span class="service-tag">5-10 Days</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Civil Registry Services -->
+            <div class="services-category">
+                <h2 class="services-category-title"><i class="fa-solid fa-file-contract"></i> Civil Registry Services</h2>
+                <div class="service-cards-grid">
+                    <div class="service-card">
+                        <div class="service-card-icon" style="background: linear-gradient(135deg, var(--batac-blue) 0%, #003399 100%);">
+                            <i class="fa-solid fa-baby"></i>
+                        </div>
+                        <h3>Birth Certificate</h3>
+                        <p>Request certified copies of birth certificates for identification, enrollment, and legal purposes.</p>
+                        <div class="service-meta">
+                            <span class="service-tag online">Online Request</span>
+                            <span class="service-tag">Same Day</span>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-card-icon" style="background: linear-gradient(135deg, var(--batac-blue) 0%, #003399 100%);">
+                            <i class="fa-solid fa-ring"></i>
+                        </div>
+                        <h3>Marriage Certificate</h3>
+                        <p>Obtain certified copies of marriage certificates and apply for marriage licenses.</p>
+                        <div class="service-meta">
+                            <span class="service-tag walk-in">Walk-in</span>
+                            <span class="service-tag">Same Day</span>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-card-icon" style="background: linear-gradient(135deg, var(--batac-blue) 0%, #003399 100%);">
+                            <i class="fa-solid fa-scroll"></i>
+                        </div>
+                        <h3>Death Certificate</h3>
+                        <p>Request certified copies of death certificates for legal and administrative requirements.</p>
+                        <div class="service-meta">
+                            <span class="service-tag walk-in">Walk-in</span>
+                            <span class="service-tag">Same Day</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Treasury Services -->
+            <div class="services-category">
+                <h2 class="services-category-title"><i class="fa-solid fa-coins"></i> Treasury & Assessment Services</h2>
+                <div class="service-cards-grid">
+                    <div class="service-card">
+                        <div class="service-card-icon" style="background: linear-gradient(135deg, var(--batac-yellow) 0%, #d4a800 100%);">
+                            <i class="fa-solid fa-landmark" style="color: var(--text-dark);"></i>
+                        </div>
+                        <h3>Real Property Tax Payment</h3>
+                        <p>Pay your real property taxes online or at the City Treasurer's Office. Early payment discounts available.</p>
+                        <div class="service-meta">
+                            <span class="service-tag online">Online Payment</span>
+                            <span class="service-tag">Instant</span>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-card-icon" style="background: linear-gradient(135deg, var(--batac-yellow) 0%, #d4a800 100%);">
+                            <i class="fa-solid fa-receipt" style="color: var(--text-dark);"></i>
+                        </div>
+                        <h3>Tax Clearance</h3>
+                        <p>Obtain tax clearance certificates required for business permits and property transactions.</p>
+                        <div class="service-meta">
+                            <span class="service-tag walk-in">Walk-in</span>
+                            <span class="service-tag">1-2 Days</span>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-card-icon" style="background: linear-gradient(135deg, var(--batac-yellow) 0%, #d4a800 100%);">
+                            <i class="fa-solid fa-house-circle-check" style="color: var(--text-dark);"></i>
+                        </div>
+                        <h3>Property Assessment</h3>
+                        <p>Request property valuation, transfer of ownership, and tax declaration updates.</p>
+                        <div class="service-meta">
+                            <span class="service-tag walk-in">Walk-in</span>
+                            <span class="service-tag">3-5 Days</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Health & Social Services -->
+            <div class="services-category">
+                <h2 class="services-category-title"><i class="fa-solid fa-heart-pulse"></i> Health & Social Services</h2>
+                <div class="service-cards-grid">
+                    <div class="service-card">
+                        <div class="service-card-icon" style="background: linear-gradient(135deg, var(--batac-red) 0%, #c41020 100%);">
+                            <i class="fa-solid fa-syringe"></i>
+                        </div>
+                        <h3>Immunization Programs</h3>
+                        <p>Free vaccination services for children and adults at city health centers and barangay health stations.</p>
+                        <div class="service-meta">
+                            <span class="service-tag walk-in">Walk-in</span>
+                            <span class="service-tag">Free</span>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-card-icon" style="background: linear-gradient(135deg, var(--batac-red) 0%, #c41020 100%);">
+                            <i class="fa-solid fa-file-medical"></i>
+                        </div>
+                        <h3>Medical Certificates</h3>
+                        <p>Health certificates for employment, school enrollment, and food handler permits.</p>
+                        <div class="service-meta">
+                            <span class="service-tag walk-in">Walk-in</span>
+                            <span class="service-tag">Same Day</span>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-card-icon" style="background: linear-gradient(135deg, var(--batac-red) 0%, #c41020 100%);">
+                            <i class="fa-solid fa-hand-holding-heart"></i>
+                        </div>
+                        <h3>Social Welfare Assistance</h3>
+                        <p>Financial assistance, livelihood programs, and support services for indigent families.</p>
+                        <div class="service-meta">
+                            <span class="service-tag walk-in">Walk-in</span>
+                            <span class="service-tag">Assessment Required</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Engineering Services -->
+            <div class="services-category">
+                <h2 class="services-category-title"><i class="fa-solid fa-helmet-safety"></i> Engineering & Public Works</h2>
+                <div class="service-cards-grid">
+                    <div class="service-card">
+                        <div class="service-card-icon">
+                            <i class="fa-solid fa-road"></i>
+                        </div>
+                        <h3>Road Maintenance Request</h3>
+                        <p>Report road damages, potholes, and request street repairs in your barangay.</p>
+                        <div class="service-meta">
+                            <span class="service-tag online">Online Report</span>
+                            <span class="service-tag">7-14 Days</span>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-card-icon">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+                        <h3>Street Light Repair</h3>
+                        <p>Report non-functional street lights and request installation of new lighting fixtures.</p>
+                        <div class="service-meta">
+                            <span class="service-tag online">Online Report</span>
+                            <span class="service-tag">3-5 Days</span>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-card-icon">
+                            <i class="fa-solid fa-faucet-drip"></i>
+                        </div>
+                        <h3>Drainage & Flood Control</h3>
+                        <p>Report drainage issues, flooding areas, and request canal cleaning services.</p>
+                        <div class="service-meta">
+                            <span class="service-tag online">Online Report</span>
+                            <span class="service-tag">Priority Based</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Requirements Info -->
+            <div class="requirements-section">
+                <h3><i class="fa-solid fa-clipboard-list"></i> General Requirements for City Hall Transactions</h3>
+                <ul>
+                    <li>Valid Government-issued ID (original and photocopy)</li>
+                    <li>Proof of Residency (Barangay Certificate)</li>
+                    <li>Completed Application Form (available at respective offices)</li>
+                    <li>2x2 or 1x1 ID Photo (depending on transaction)</li>
+                    <li>Authorization Letter (if representative)</li>
+                    <li>Previous permits/documents (for renewal)</li>
+                    <li>Community Tax Certificate (Cedula)</li>
+                    <li>Other specific requirements per transaction type</li>
+                </ul>
+            </div>
+
+            <!-- Office Hours -->
+            <div class="docs-section" style="margin-bottom: 30px;">
+                <div class="docs-content">
+                    <h2><i class="fa-solid fa-clock"></i> City Hall Office Hours</h2>
+                    <p><strong>Monday to Friday:</strong> 8:00 AM - 5:00 PM (No Noon Break)<br>
+                    <strong>Saturday, Sunday & Holidays:</strong> Closed<br><br>
+                    For urgent matters outside office hours, please contact the emergency hotlines.</p>
+                    <button class="docs-btn" onclick="showSection('contact')">
+                        <i class="fa-solid fa-location-dot"></i> View Location & Contact
+                    </button>
+                </div>
+                <i class="fa-solid fa-building-user docs-icon"></i>
+            </div>
+
+            <button class="back-btn" onclick="showSection('home')">
+                <i class="fa-solid fa-arrow-left"></i> Back to Home
+            </button>
+        </div>
+    </div>
+
+    <div id="tourism" class="page-section">
+        <!-- Tourism Hero -->
+        <div class="tourism-hero">
+            <div class="tourism-hero-content">
+                <h1><i class="fa-solid fa-compass"></i> Discover Batac</h1>
+                <p>Experience the rich history, vibrant culture, and unforgettable flavors of the Home of the Greats.</p>
+            </div>
+        </div>
+
+        <div class="tourism-container">
+            <!-- Historical Landmarks -->
+            <h2 class="tourism-section-title"><i class="fa-solid fa-landmark" style="color: var(--batac-red);"></i> Historical Landmarks</h2>
+            <p class="tourism-section-subtitle">Walk through history and discover the stories that shaped a nation</p>
+            
+            <div class="attractions-grid">
+                <div class="attraction-card featured">
+                    <div class="attraction-image" style="background-image: url('Batac/House of marcos.jpg');">
+                        <span class="attraction-badge">Must Visit</span>
+                    </div>
+                    <div class="attraction-content">
+                        <h3>Ferdinand E. Marcos Presidential Center & Museum</h3>
+                        <p>The city's most prominent attraction, this museum complex houses extensive exhibits of memorabilia, photographs, and documents chronicling the life and presidency of Ferdinand E. Marcos. The preserved body of the former president is also on display at the mausoleum, making it a significant historical site for understanding Philippine political history.</p>
+                        <div class="attraction-meta">
+                            <span><i class="fa-solid fa-clock"></i> 9:00 AM - 4:00 PM</span>
+                            <span><i class="fa-solid fa-location-dot"></i> Marcos Avenue</span>
+                            <span><i class="fa-solid fa-ticket"></i> Free Admission</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="attraction-card">
+                    <div class="attraction-image" style="background-image: url('Batac/Ancestral home of marcos.jpg');">
+                        <span class="attraction-badge">Heritage</span>
+                    </div>
+                    <div class="attraction-content">
+                        <h3>Marcos Ancestral House</h3>
+                        <p>The childhood home of Ferdinand Marcos, preserved to showcase the simple beginnings of the former president. Features original furniture and personal belongings of the Marcos family.</p>
+                        <div class="attraction-meta">
+                            <span><i class="fa-solid fa-clock"></i> 8:00 AM - 5:00 PM</span>
+                            <span><i class="fa-solid fa-location-dot"></i> City Center</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="attraction-card">
+                    <div class="attraction-image" style="background-image: url('Batac/Immaculate_Conception_Parish_Church.jpg');">
+                        <span class="attraction-badge">Religious</span>
+                    </div>
+                    <div class="attraction-content">
+                        <h3>Immaculate Conception Parish Church</h3>
+                        <p>A stunning 16th-century Augustinian church showcasing Spanish colonial Baroque architecture. Features ornate interiors, historical relics, and serves as a testament to Batacqueño faith and heritage.</p>
+                        <div class="attraction-meta">
+                            <span><i class="fa-solid fa-clock"></i> 6:00 AM - 6:00 PM</span>
+                            <span><i class="fa-solid fa-location-dot"></i> Poblacion</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- More Attractions -->
+            <div class="attractions-grid">
+                <div class="attraction-card">
+                    <div class="attraction-image" style="background-image: url('Batac/general_recarte.jpg');">
+                        <span class="attraction-badge">Historical</span>
+                    </div>
+                    <div class="attraction-content">
+                        <h3>Gen. Artemio Ricarte National Shrine</h3>
+                        <p>A tribute to the "Father of the Philippine Army," featuring a museum with memorabilia and documents from the Philippine-American War era, set in a beautifully manicured park.</p>
+                        <div class="attraction-meta">
+                            <span><i class="fa-solid fa-clock"></i> 8:00 AM - 8:00 PM</span>
+                            <span><i class="fa-solid fa-ticket"></i> Free Admission</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="attraction-card">
+                    <div class="attraction-image" style="background-image: url('Batac/church_bell_tower.JPG');">
+                        <span class="attraction-badge">Landmark</span>
+                    </div>
+                    <div class="attraction-content">
+                        <h3>Batac Church Bell Tower</h3>
+                        <p>An iconic Spanish-era bell tower standing beside the Immaculate Conception Church. A beautiful example of colonial architecture and a popular spot for photography.</p>
+                        <div class="attraction-meta">
+                            <span><i class="fa-solid fa-camera"></i> Photo Spot</span>
+                            <span><i class="fa-solid fa-location-dot"></i> Church Grounds</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nature Section -->
+            <div class="nature-section">
+                <h2 class="tourism-section-title"><i class="fa-solid fa-leaf" style="color: var(--batac-green);"></i> Natural Attractions</h2>
+                <p class="tourism-section-subtitle">Escape to the serene beauty of Batac's natural wonders</p>
+                
+                <div class="nature-card">
+                    <div class="nature-image" style="background-image: url('Batac/kabacan_falls.jpg');"></div>
+                    <div class="nature-content">
+                        <h3><i class="fa-solid fa-water"></i> Kabacan Falls</h3>
+                        <p>A serene natural escape showcasing the untouched beauty of the Batac highlands. This hidden gem offers a refreshing swimming experience surrounded by lush vegetation and towering rock formations.</p>
+                        <p>The journey to the falls involves a scenic trek through the countryside, making it perfect for adventure seekers and nature lovers alike. Best visited during the dry season (November to April) when the trails are more accessible.</p>
+                        <div class="attraction-meta" style="margin-top: 20px;">
+                            <span><i class="fa-solid fa-hiking"></i> 30-min Trek</span>
+                            <span><i class="fa-solid fa-sun"></i> Best: Nov-Apr</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Food Section -->
+            <div class="food-section">
+                <div class="food-grid">
+                    <div class="food-image">
+                        <img src="Batac/Empanada_of_Batac_Ilocos_Norte.jpg" alt="Batac Empanada">
+                    </div>
+                    <div class="food-content">
+                        <h2><i class="fa-solid fa-utensils"></i> The Famous Batac Empanada</h2>
+                        <p>No visit to Batac is complete without tasting the iconic Batac Empanada – a distinctive Ilocano pastry that has become the city's culinary pride and identity.</p>
+                        <p>Unlike ordinary empanadas, the Batac version features a distinctive orange-colored crust made from rice flour and is deep-fried to crispy perfection. The filling is a savory combination of:</p>
+                        <ul class="food-list">
+                            <li>Freshly grated green papaya</li>
+                            <li>Monggo beans (mung beans)</li>
+                            <li>Authentic Batac longganisa (sausage)</li>
+                            <li>One whole egg cracked on top</li>
+                        </ul>
+                        <p><strong>Where to eat:</strong> Visit the <em>Riverside Empanadaan</em> near the church, open from 7:30 AM. Pro tip: Go early to avoid the crowds that form around 6 PM!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- More Ilocano Cuisine -->
+            <div class="attractions-grid" style="margin-bottom: 60px;">
+                <div class="attraction-card">
+                    <div class="attraction-image" style="background-image: url('Batac/batac_longganisa.jpeg'); height: 200px;">
+                    </div>
+                    <div class="attraction-content">
+                        <h3><i class="fa-solid fa-drumstick-bite" style="color: var(--batac-red);"></i> Batac Longganisa</h3>
+                        <p>A garlicky, slightly sour native sausage that's a staple in every Ilocano breakfast. Best paired with garlic rice and fresh eggs.</p>
+                    </div>
+                </div>
+                <div class="attraction-card">
+                    <div class="attraction-image" style="background-image: url('Batac/ilocos_pinakbet.jpg'); height: 200px;">
+                    </div>
+                    <div class="attraction-content">
+                        <h3><i class="fa-solid fa-carrot" style="color: var(--batac-green);"></i> Pinakbet</h3>
+                        <p>A traditional vegetable dish cooked with bagoong (fermented fish paste), featuring local vegetables like ampalaya, squash, and eggplant.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Festival Section -->
+            <div class="festival-section">
+                <div class="festival-grid">
+                    <div class="festival-content">
+                        <h2><i class="fa-solid fa-masks-theater"></i> Empanada Festival</h2>
+                        <p>Every December, Batac comes alive with the Empanada Festival – a vibrant celebration of the city's culinary heritage and founding anniversary.</p>
+                        <p>The festival features colorful street pageantry with village representatives, exciting contests on empanada preparation and cooking, cultural performances, and spectacular fireworks displays.</p>
+                        <p>It's the perfect time to experience Batac's rich culture and taste the best empanadas from local vendors competing for the top spot!</p>
+                        <div class="festival-date">
+                            <i class="fa-solid fa-calendar-star"></i>
+                            <strong>Celebrated every December</strong> (City Founding Anniversary)
+                        </div>
+                    </div>
+                    <div class="festival-image">
+                        <img src="Batac/empanada_festival.jpg" alt="Empanada Festival">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Travel Tips -->
+            <div class="travel-tips">
+                <h2><i class="fa-solid fa-lightbulb" style="color: var(--batac-yellow);"></i> Travel Tips</h2>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <i class="fa-solid fa-sun"></i>
+                        <h4>Best Time to Visit</h4>
+                        <p>November to April (Dry Season)</p>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fa-solid fa-van-shuttle"></i>
+                        <h4>Getting There</h4>
+                        <p>30-40 mins from Laoag City</p>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fa-solid fa-language"></i>
+                        <h4>Local Language</h4>
+                        <p>Ilocano, Filipino, English</p>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fa-solid fa-peso-sign"></i>
+                        <h4>Budget Friendly</h4>
+                        <p>Most attractions are free!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="docs-section">
+                <div class="docs-content">
+                    <h2><i class="fa-solid fa-map-location-dot"></i> Plan Your Visit</h2>
+                    <p>Ready to explore Batac? Contact our Tourism Office for guided tours, itinerary suggestions, and local recommendations. We're here to make your visit unforgettable!</p>
+                    <button class="docs-btn" onclick="showSection('contact')">
+                        <i class="fa-solid fa-phone"></i> Contact Tourism Office
+                    </button>
+                </div>
+                <i class="fa-solid fa-plane-departure docs-icon"></i>
+            </div>
+
+            <button class="back-btn" onclick="showSection('home')">
+                <i class="fa-solid fa-arrow-left"></i> Back to Home
+            </button>
+        </div>
+    </div>
+
+    <div id="news" class="page-section">
+        <div class="news-container">
+            <div class="page-header">
+                <h1><i class="fa-solid fa-newspaper"></i> News & Announcements</h1>
+                <p>Stay updated with the latest from the City Government of Batac</p>
+            </div>
+
+            <div class="news-card">
+                <div class="news-date"><i class="fa-solid fa-calendar"></i> March 12, 2026</div>
+                <h3>Notice of CGB Job Opportunities – March 10, 2026</h3>
+                <p>The City Government of Batac announces job openings for various positions. Interested applicants may submit their requirements to the Human Resource Office at the City Hall Building during office hours.</p>
+            </div>
+
+            <div class="news-card">
+                <div class="news-date"><i class="fa-solid fa-calendar"></i> March 4, 2026</div>
+                <h3>Batac Holds 1st Quarter Blood Donation Drive</h3>
+                <p>The City Government of Batac, through the City Health Office, successfully conducted its 1st Quarter Blood Donation Drive to help sustain the city's blood bank and ensure that safe blood is available for those in need. The activity gathered volunteer donors from the community, barangay frontliners, and national government agencies who willingly gave blood to support the cause.</p>
+            </div>
+
+            <div class="news-card">
+                <div class="news-date"><i class="fa-solid fa-calendar"></i> March 2, 2026</div>
+                <h3>Batac Wins Innovation Prize, Best Male Performer; Places 5th at Tan-Ok 2026</h3>
+                <p>The City of Batac placed 5th among 22 cities and municipalities at the Tan-ok ni Ilocano Festival of Festivals 2026, while also winning the Innovation Prize and Best Male Performer. Batac's Empanada Festival presentation told a touching story of the Ilokano spirit during Christmas — a season when generosity grows even in times of little.</p>
+            </div>
+
+            <div class="news-card">
+                <div class="news-date"><i class="fa-solid fa-calendar"></i> February 20, 2026</div>
+                <h3>SPM Mara Medina Borleo Crowned Ms. Red Cross 2026</h3>
+                <p>Dr. Mara Medina Borleo, Sangguniang Panlungsod Member and official representative of the City of Batac, was crowned Ms. Red Cross 2026 on February 19 during the coronation night held in Laoag City as part of the Pamulinawen Festival. The Search for Ms. Red Cross is a fundraising initiative of the Philippine Red Cross Ilocos Norte Chapter.</p>
+            </div>
+
+            <button class="back-btn" onclick="showSection('home')" style="margin-top: 30px;">
+                <i class="fa-solid fa-arrow-left"></i> Back to Home
+            </button>
+        </div>
+    </div>
+
+    <div id="contact" class="page-section">
+        <div class="contact-container">
+            <div class="page-header">
+                <h1><i class="fa-solid fa-headset"></i> Contact Us</h1>
+                <p>We're here to serve you. Reach out to us through any of the following channels.</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <h3><i class="fa-solid fa-location-dot"></i> Office Address</h3>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-building"></i>
+                        <p><strong>City Hall Building</strong><br>Washington St., Brgy. 1-S Valdez<br>City of Batac, Ilocos Norte 2906</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-clock"></i>
+                        <p><strong>Office Hours</strong><br>Monday - Friday: 8:00 AM - 5:00 PM</p>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <h3><i class="fa-solid fa-phone"></i> Contact Numbers</h3>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-user-tie"></i>
+                        <p><strong>Mayor's Office</strong><br>(077) 671-1725 / 677-2877</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-truck-medical"></i>
+                        <p><strong>Emergency / CDRRMO</strong><br>(077) 792-3120</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <p><strong>Email</strong><br>lovebatac@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15198.089456774885!2d120.54477095!3d18.0553566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x338e1c5ccb0a0f5f%3A0x4f3f9c4e7a2e8e9!2sBatac%2C%20Ilocos%20Norte!5e0!3m2!1sen!2sph!4v1679900000000!5m2!1sen!2sph" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+
+            <div class="contact-card" style="text-align: center;">
+                <h3 style="justify-content: center;"><i class="fa-solid fa-globe"></i> Official Website & Social Media</h3>
+                <p style="margin-bottom: 20px;">Follow us for updates and announcements</p>
+                <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                    <a href="https://batac.gov.ph" target="_blank" class="docs-btn" style="text-decoration: none;">
+                        <i class="fa-solid fa-globe"></i> batac.gov.ph
+                    </a>
+                    <a href="https://www.facebook.com/cityaboratac" target="_blank" class="back-btn" style="text-decoration: none;">
+                        <i class="fa-brands fa-facebook"></i> Facebook
+                    </a>
+                </div>
+            </div>
+
+            <button class="back-btn" onclick="showSection('home')" style="margin-top: 30px;">
+                <i class="fa-solid fa-arrow-left"></i> Back to Home
+            </button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-logo">
+                <h3>City Government of Batac</h3>
+            </div>
+            <div>
+                <h4 style="color: white; margin-bottom: 15px;">Resources</h4>
+                <p>Public Documents</p>
+                <p>Citizen's Charter</p>
+            </div>
+            <div>
+                <h4 style="color: white; margin-bottom: 15px;">Contact</h4>
+                <p>hotline@batac.gov.ph</p>
+                <p>(077) 792 3120</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.page-section').forEach(section => section.classList.remove('active'));
+            const target = document.getElementById(sectionId);
+            if(target) target.classList.add('active');
+            
+            document.querySelectorAll('nav a').forEach(link => link.classList.remove('active'));
+            const navLink = document.getElementById('nav-' + sectionId);
+            if(navLink) navLink.classList.add('active');
+            
+            window.scrollTo(0, 0);
+            
+            if(sectionId === 'home') {
+                setTimeout(animateCounters, 500);
+            }
+        }
+
+        function showGovTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            
+            const targetTab = document.getElementById(tabName + '-tab');
+            if(targetTab) targetTab.classList.add('active');
+            
+            event.target.classList.add('active');
+        }
+
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
+                
+                const updateCounter = () => {
+                    current += increment;
+                    if(current < target) {
+                        counter.textContent = Math.ceil(current).toLocaleString();
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target.toLocaleString();
+                    }
+                };
+                updateCounter();
+            });
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const statsSection = document.querySelector('.stats-section');
+            if(statsSection) observer.observe(statsSection);
+        });
+
+        document.querySelectorAll('.landmark-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-12px)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
